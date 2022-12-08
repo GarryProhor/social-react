@@ -1,3 +1,5 @@
+This project is part of another project. backend is on the link - https://github.com/GarryProhor/social-spring.git
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
