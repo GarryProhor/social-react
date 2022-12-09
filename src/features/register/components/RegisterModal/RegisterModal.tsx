@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Modal} from "../../../../components/Modal/Modal";
 import './RegisterModal.css';
 import {RegistrationStepCounter} from "../RegisterStepCounter/RegistrationStepCounter";
+import {determineModalContent} from "../../utils/RegisterModalUtils";
 export const RegisterModal:React.FC = () => {
     const [step, setStep] = useState<number>(3);
 
@@ -12,6 +13,9 @@ export const RegisterModal:React.FC = () => {
             <Modal>
                <div className="register-container">
                    <RegistrationStepCounter step={step} changeStep={stepButtonClicked}/>
+                   <div className="register-modal-content">
+                       {determineModalContent(step)}
+                   </div>
                </div>
             </Modal>
     );
