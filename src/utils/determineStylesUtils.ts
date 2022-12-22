@@ -28,5 +28,5 @@ export const determineLabelColor = (props:StyledInputProps):string =>{
         return theme.colors.blue;
     }
 
-    return theme.colors.lightGray;
+    return theme.colors.gray;
 }

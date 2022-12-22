@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {ValidatedInputState} from "../../utils/GlobalInterfaces";
 import {StyledInputBox, StyledInputLabel} from "./StyledInput";
 import './ValidatedInput.css';
 
@@ -19,14 +20,40 @@ const ValidatedInput: React.FC<ValidatedUserInputProps> = ({
                                                                attributes,
                                                                changeValue
                                                            }) => {
+    const [validatedState, setValidatedState]  = useState<ValidatedInputState>({
+        active: false,
+        valid: true,
+        typeIn: false,
+        labelActive: false,
+        labelColor: "gray",
+        value: ''
+    });
+    const focus = (e:React.FocusEvent<HTMLInputElement>):void=>{
+        setValidatedState({
+            ...validatedState,
+            active: !validatedState?.active
+        });
+    }
+    const updateValue = (e:React.ChangeEvent<HTMLInputElement>):void =>{
+        setValidatedState({
+            ...validatedState,
+            typeIn: true,
+            value: e.target.value
+        });
+        changeValue(e);
+    }
     return (
         <div className='validated-input'>
-            <StyledInputBox active={false} valid={true}>
-                <StyledInputLabel active={false} valid={true} color={'gray'}>{label}</StyledInputLabel>
+            <StyledInputBox active={validatedState.active} valid={validatedState.valid}>
+                <StyledInputLabel active={validatedState.labelActive}
+                                  valid={validatedState.valid}
+                                  color={validatedState.labelColor}>
+                    {label}
+                </StyledInputLabel>
                 <input className='validated-input-value'
-                       onFocus={()=>{}}
-                       onBlur={()=>{}}
-                       onChange={()=>{}}
+                       onFocus={focus}
+                       onBlur={focus}
+                       onChange={updateValue}
                        {...attributes}
                 />
             </StyledInputBox>
