@@ -2,6 +2,7 @@ import React from 'react';
 import './assets/css/global.css';
 import {Landing} from "./pages/Landing";
 
+
 import {ThemeProvider, createGlobalStyle} from "styled-components";
 import {Theme} from "./utils/GlobalInterfaces";
 

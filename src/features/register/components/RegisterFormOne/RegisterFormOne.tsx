@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import './RegisterFormOne.css';
 import {TextInput} from "../../../../components/TextInput/TextInput";
+import ValidatedInput from "../../../../components/ValidatedInput/ValidatedInput";
 
-interface FormOneState{
-    firstName:string;
-    lastName:string;
-    email:string;
-    dateOfBirth:string;
+interface FormOneState {
+    firstName: string;
+    lastName: string;
+    email: string;
+    dateOfBirth: string;
 }
 
-export  const RegisterFormOne:React.FC = () => {
+export const RegisterFormOne: React.FC = () => {
     const [stepOneState, setStepOneState] = useState<FormOneState>({
         firstName: "",
         lastName: "",
@@ -17,28 +18,31 @@ export  const RegisterFormOne:React.FC = () => {
         dateOfBirth: ""
     })
 
-    const updateUser = (e:React.ChangeEvent<HTMLInputElement>): void => {
+    const updateUser = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setStepOneState({...stepOneState, [e.target.name]: e.target.value});
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("state change", stepOneState);
     }, [stepOneState])
     return (
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
-                <TextInput name={'firstName'}
-                            label={'First'}
-                            errorMessage={'Please enter your name'}
-                            onChange={updateUser}/>
-                <TextInput name={'lastName'}
-                           label={'Last'}
-                           errorMessage={'Please enter your last name'}
-                           onChange={updateUser}/>
-                <TextInput name={'email'}
-                           label={'Email'}
-                           errorMessage={'Please enter a valid email'}
-                           onChange={updateUser}/>
+                <ValidatedInput name={"firstName"}
+                                label={"First"}
+                                errorMessage={"Whats your name?"}
+                                validator={()=>true}
+                                changeValue={updateUser}/>
+                <ValidatedInput name={"lastName"}
+                                label={"Last"}
+                                errorMessage={"Whats your name?"}
+                                validator={()=>true}
+                                changeValue={updateUser}/>
+                <ValidatedInput name={"email"}
+                                label={"Email"}
+                                errorMessage={"Enter a valid email"}
+                                validator={()=>true}
+                                changeValue={updateUser}/>
             </div>
         </div>
     );
