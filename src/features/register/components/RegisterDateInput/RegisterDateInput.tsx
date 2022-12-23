@@ -1,35 +1,51 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './RegisterDateInput.css';
 import {ValidatedDateSelected} from "../../../../components/ValidatedInput/ValidatedDateSelected";
 import {getMonths, getDays, getYears} from "../../utils/DateUtinls";
-import {AppDispatch} from "../../../../redux/Store";
-import {useDispatch} from "react-redux";
+import {AppDispatch, RootState} from "../../../../redux/Store";
+import {useDispatch, useSelector} from "react-redux";
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
+import {validateDob} from "../../../../services/Validators";
 
-export const RegisterDateInput:React.FC = () => {
-    const dispatch:AppDispatch = useDispatch();
-    const updateState = (name:string, value:string|number|boolean):void =>{
+export const RegisterDateInput: React.FC = () => {
+    const state = useSelector((state: RootState) => state.register);
+    const dispatch: AppDispatch = useDispatch();
+
+    const [valid, setValid] = useState(true);
+    const updateState = (name: string, value: string | number | boolean): void => {
         dispatch(updateRegister({
             name,
             value
         }));
     }
+    useEffect(()=>{
+        let {day, month, year} = state.dob;
+        if(day && month && year ){
+            setValid(validateDob({
+                month,
+                day,
+                year
+            }));
+            dispatch(updateRegister({name: 'dobValid', value: valid}));
+        }
+    }, [state.dob.day, state.dob.month, state.dob.year, state.dobValid, valid]);
+
     return (
         <div className='register-date'>
             <ValidatedDateSelected style={'validated-month'}
-                                   valid={true}
+                                   valid={valid}
                                    name={'Month'}
                                    dropDown={getMonths}
                                    dispatcher={updateState}
             />
             <ValidatedDateSelected style={'validated-day'}
-                                   valid={true}
+                                   valid={valid}
                                    name={'Day'}
                                    dropDown={getDays}
                                    dispatcher={updateState}
             />
             <ValidatedDateSelected style={'validated-year'}
-                                   valid={true}
+                                   valid={valid}
                                    name={'Year'}
                                    dropDown={getYears}
                                    dispatcher={updateState}
