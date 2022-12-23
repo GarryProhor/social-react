@@ -6,10 +6,11 @@ interface ValidatedDateSelectedProps{
     style:string;
     valid:boolean;
     name:string;
-    dropDown():JSX.Element[]
+    dropDown():JSX.Element[];
+    dispatcher(name:string, value:string|number|boolean):void;
 }
 
-export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({style, valid, name, dropDown}) => {
+export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({style, valid, name, dropDown, dispatcher}) => {
     const [active, setActive] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
     const [color, setColor] = useState<string>('gray');
@@ -18,6 +19,7 @@ export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({styl
         console.log('Dispatch this change to o reducer');
         console.log('value: ', e.target.value);
         setValue(+e.target.value);
+        dispatcher(name.toLowerCase(), +e.target.value);
     }
     const toggleActive = (e:React.FocusEvent<HTMLSelectElement>) => {
         setActive(!active);

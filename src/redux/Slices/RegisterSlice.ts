@@ -59,6 +59,7 @@ export const RegisterSlice = createSlice({
                    [name]:value
                }
            }
+           console.log('Updating the global register state: ', state);
            return state;
        }
    }
