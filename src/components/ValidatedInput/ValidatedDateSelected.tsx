@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyledInputBox, StyledInputLabel} from "./StyledInput";
+import {determineValidatedSelectStyle} from "../../utils/determineStylesUtils";
 
 interface ValidatedDateSelectedProps{
     style:string;
@@ -11,6 +12,7 @@ interface ValidatedDateSelectedProps{
 export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({style, valid, name, dropDown}) => {
     const [active, setActive] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
+    const [color, setColor] = useState<string>('gray');
 
     const changeValue = (e:React.ChangeEvent<HTMLSelectElement>) =>{
         console.log('Dispatch this change to o reducer');
@@ -21,10 +23,14 @@ export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({styl
         setActive(!active);
     }
 
+    useEffect(()=>{
+        setColor(determineValidatedSelectStyle(active, valid));
+    }, [active, valid, value]);
+
     return (
         <div className={style}>
             <StyledInputBox active={active} valid={valid}>
-                <StyledInputLabel active={true} valid={valid} color='gray'>
+                <StyledInputLabel active={true} valid={valid} color={color}>
                     {name}
                 </StyledInputLabel>
                 <select onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive}>

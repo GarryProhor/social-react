@@ -70,3 +70,13 @@ export const determineValidatedStyles = (state: ValidatedInputState, validator: 
 
     return state;
 }
+
+export const determineValidatedSelectStyle = (active: boolean, valid: boolean):string =>{
+    if(!valid){
+        return 'error';
+    }
+    if(active){
+        return 'blue';
+    }
+    return 'gray';
+}
