@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './RegisterFormOne.css';
 import {validateName} from "../../../../services/Validators";
 import ValidatedInput from "../../../../components/ValidatedInput/ValidatedInput";
+import {RegisterDateInput} from "../RegisterDateInput/RegisterDateInput";
 
 interface FormOneState {
     firstName: string;
@@ -43,6 +44,7 @@ export const RegisterFormOne: React.FC = () => {
                                 errorMessage={"Enter a valid email"}
                                 validator={()=>true}
                                 changeValue={updateUser}/>
+                <RegisterDateInput/>
             </div>
         </div>
     );
