@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './RegisterFormOne.css';
-import {validateName} from "../../../../services/Validators";
-import ValidatedInput from "../../../../components/ValidatedInput/ValidatedInput";
 import {RegisterDateInput} from "../RegisterDateInput/RegisterDateInput";
 import {RegisterNameInput} from "../RegisterNameInput/RegisterNameInput";
+import {RegisterEmailInput} from "../RegisterEmailInput/RegisterEmailInput";
 
 interface FormOneState {
     firstName: string;
@@ -31,11 +30,7 @@ export const RegisterFormOne: React.FC = () => {
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
                 <RegisterNameInput />
-                <ValidatedInput name={"email"}
-                                label={"Email"}
-                                errorMessage={"Enter a valid email"}
-                                validator={()=>true}
-                                changeValue={updateUser}/>
+                <RegisterEmailInput />
                 <RegisterDateInput/>
             </div>
         </div>
