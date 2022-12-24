@@ -3,6 +3,9 @@ import './RegisterFormOne.css';
 import {RegisterDateInput} from "../RegisterDateInput/RegisterDateInput";
 import {RegisterNameInput} from "../RegisterNameInput/RegisterNameInput";
 import {RegisterEmailInput} from "../RegisterEmailInput/RegisterEmailInput";
+import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../redux/Store";
 
 interface FormOneState {
     firstName: string;
@@ -12,27 +15,32 @@ interface FormOneState {
 }
 
 export const RegisterFormOne: React.FC = () => {
-    const [stepOneState, setStepOneState] = useState<FormOneState>({
-        firstName: "",
-        lastName: "",
-        email: "",
-        dateOfBirth: ""
-    })
+    const registerState = useSelector((state:RootState) => state.register);
 
-    const updateUser = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setStepOneState({...stepOneState, [e.target.name]: e.target.value});
-    }
+    const [buttonActive, setButtonActive] = useState<boolean>(false);
+
+
 
     useEffect(() => {
-        console.log("state change", stepOneState);
-    }, [stepOneState])
+        if(registerState.dobValid && registerState.emailValid && registerState.firstNameValid && registerState.lastNameValid){
+            setButtonActive(true);
+        }else {
+            setButtonActive(false);
+        }
+    }, [registerState])
     return (
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
-                <RegisterNameInput />
-                <RegisterEmailInput />
+                <RegisterNameInput/>
+                <RegisterEmailInput/>
                 <RegisterDateInput/>
             </div>
+            <StyledNextButton disabled={!buttonActive}
+                              active={buttonActive}
+                              color={"black"}
+                              onClick={() => console.log('got to the next page')}>
+                Next
+            </StyledNextButton>
         </div>
     );
 };
