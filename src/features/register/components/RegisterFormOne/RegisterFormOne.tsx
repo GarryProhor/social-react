@@ -4,8 +4,9 @@ import {RegisterDateInput} from "../RegisterDateInput/RegisterDateInput";
 import {RegisterNameInput} from "../RegisterNameInput/RegisterNameInput";
 import {RegisterEmailInput} from "../RegisterEmailInput/RegisterEmailInput";
 import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/Store";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../../../redux/Store";
+import {incrementStep} from "../../../../redux/Slices/RegisterSlice";
 
 interface FormOneState {
     firstName: string;
@@ -16,10 +17,13 @@ interface FormOneState {
 
 export const RegisterFormOne: React.FC = () => {
     const registerState = useSelector((state:RootState) => state.register);
+    const dispatch:AppDispatch = useDispatch();
 
     const [buttonActive, setButtonActive] = useState<boolean>(false);
 
-
+    const nextPage = () =>{
+        dispatch(incrementStep());
+    }
 
     useEffect(() => {
         if(registerState.dobValid && registerState.emailValid && registerState.firstNameValid && registerState.lastNameValid){
@@ -31,14 +35,14 @@ export const RegisterFormOne: React.FC = () => {
     return (
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
-                <RegisterNameInput/>
-                <RegisterEmailInput/>
-                <RegisterDateInput/>
+                <RegisterNameInput firstName={registerState.firstName} lastName={registerState.lastName}/>
+                <RegisterEmailInput email={registerState.email}/>
+                <RegisterDateInput date={registerState.dob}/>
             </div>
             <StyledNextButton disabled={!buttonActive}
                               active={buttonActive}
                               color={"black"}
-                              onClick={() => console.log('got to the next page')}>
+                              onClick={nextPage}>
                 Next
             </StyledNextButton>
         </div>

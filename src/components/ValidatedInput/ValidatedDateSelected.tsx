@@ -8,9 +8,10 @@ interface ValidatedDateSelectedProps{
     name:string;
     dropDown():JSX.Element[];
     dispatcher(name:string, value:string|number|boolean):void;
+    data?:number;
 }
 
-export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({style, valid, name, dropDown, dispatcher}) => {
+export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({data,style, valid, name, dropDown, dispatcher}) => {
     const [active, setActive] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
     const [color, setColor] = useState<string>('gray');
@@ -35,7 +36,7 @@ export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({styl
                 <StyledInputLabel active={true} valid={valid} color={color}>
                     {name}
                 </StyledInputLabel>
-                <select onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive}>
+                <select onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive} value={data}>
                     {dropDown()}
                 </select>
             </StyledInputBox>
