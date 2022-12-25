@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyledInputBox, StyledInputLabel} from "./StyledInput";
 import {determineValidatedTextLabel} from "../../utils/determineStylesUtils";
+import './ValidatedInput.css';
 
 interface ValidatedTextInputProps{
     valid:boolean;
@@ -34,7 +35,7 @@ export const ValidatedTextInput:React.FC<ValidatedTextInputProps> = ({valid, lab
         setColor(determineValidatedTextLabel(borderActive, valid));
     }, [valid, value, borderActive, labelActive, color]);
     return (
-        <div className='validated-text-input'>
+        <div className='validated-input'>
             <StyledInputBox active={borderActive} valid={valid}>
                 <StyledInputLabel active={labelActive} valid={valid} color={color}>
                     {label}

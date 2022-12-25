@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyledInputBox, StyledInputLabel} from "./StyledInput";
 import {determineValidatedSelectStyle} from "../../utils/determineStylesUtils";
-
+import './ValidatedInput.css';
+import {ExpandMoreRounded} from "@mui/icons-material";
 interface ValidatedDateSelectedProps{
     style:string;
     valid:boolean;
@@ -31,12 +32,19 @@ export const ValidatedDateSelected:React.FC<ValidatedDateSelectedProps> = ({data
     }, [active, valid, value]);
 
     return (
-        <div className={style}>
+        <div className='validated-input'>
             <StyledInputBox active={active} valid={valid}>
                 <StyledInputLabel active={true} valid={valid} color={color}>
                     {name}
+                    <ExpandMoreRounded sx={{
+                        fontSize: 34,
+                        color: active ? '#1da1f2' : '#657786',
+                        position: 'absolute',
+                        right: '15px',
+                        top: '35%'
+                    }}/>
                 </StyledInputLabel>
-                <select onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive} value={data}>
+                <select className='validated-input-value validated-date-selector' onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive} value={data}>
                     {dropDown()}
                 </select>
             </StyledInputBox>

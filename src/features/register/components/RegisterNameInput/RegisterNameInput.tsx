@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 import {validateName} from "../../../../services/Validators";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
+import './RegisterNameInput.css';
 
 interface RegisterNameInputProps{
     firstName:string;
@@ -35,8 +36,14 @@ export const RegisterNameInput:React.FC<RegisterNameInputProps> = ({firstName, l
     }
     return (
         <div className='register-name-input'>
-            <ValidatedTextInput valid={firstValid} name={'firstName'} label={'First'} changeValue={updateName} data={firstName}/>
-            <ValidatedTextInput valid={lastValid} name={'lastName'} label={'Last'} changeValue={updateName} data={lastName}/>
+            <div className='register-name-content'>
+                <ValidatedTextInput valid={firstValid} name={'firstName'} label={'First'} changeValue={updateName} data={firstName}/>
+                {firstName ? <></> : <span className='register-name-error'>What's your name?</span>}
+            </div>
+            <div className='register-name-content'>
+                <ValidatedTextInput valid={lastValid} name={'lastName'} label={'Last'} changeValue={updateName} data={lastName}/>
+                {lastName ? <></> : <span className='register-name-error'>What's your name?</span>}
+            </div>
         </div>
     );
 };
