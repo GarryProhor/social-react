@@ -8,8 +8,8 @@ import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 import {validateDob} from "../../../../services/Validators";
 import {Dob} from "../../../../utils/GlobalInterfaces";
 
-interface RegisterDateInputProps{
-    date:Dob;
+interface RegisterDateInputProps {
+    date: Dob;
 }
 
 export const RegisterDateInput: React.FC<RegisterDateInputProps> = ({date}) => {
@@ -23,9 +23,9 @@ export const RegisterDateInput: React.FC<RegisterDateInputProps> = ({date}) => {
             value
         }));
     }
-    useEffect(()=>{
+    useEffect(() => {
         let {day, month, year} = state.dob;
-        if(day && month && year ){
+        if (day && month && year) {
             setValid(validateDob({
                 month,
                 day,
@@ -37,27 +37,36 @@ export const RegisterDateInput: React.FC<RegisterDateInputProps> = ({date}) => {
 
     return (
         <div className='register-date'>
-            <ValidatedDateSelected style={'validated-month'}
-                                   valid={valid}
-                                   name={'Month'}
-                                   dropDown={getMonths}
-                                   dispatcher={updateState}
-                                   data={date.month}
-            />
-            <ValidatedDateSelected style={'validated-day'}
-                                   valid={valid}
-                                   name={'Day'}
-                                   dropDown={getDays}
-                                   dispatcher={updateState}
-                                   data={date.day}
-            />
-            <ValidatedDateSelected style={'validated-year'}
-                                   valid={valid}
-                                   name={'Year'}
-                                   dropDown={getYears}
-                                   dispatcher={updateState}
-                                   data={date.year}
-            />
+            <div className='register-date-content'>
+                <div className='register-date-month'>
+                    <ValidatedDateSelected style={'validated-month'}
+                                           valid={valid}
+                                           name={'Month'}
+                                           dropDown={getMonths}
+                                           dispatcher={updateState}
+                                           data={date.month}
+                    />
+                </div>
+                <div className='register-date-day'>
+                    <ValidatedDateSelected style={'validated-day'}
+                                           valid={valid}
+                                           name={'Day'}
+                                           dropDown={getDays}
+                                           dispatcher={updateState}
+                                           data={date.day}
+                    />
+                </div>
+                <div className='register-date-year'>
+                    <ValidatedDateSelected style={'validated-year'}
+                                           valid={valid}
+                                           name={'Year'}
+                                           dropDown={getYears}
+                                           dispatcher={updateState}
+                                           data={date.year}
+                    />
+                </div>
+            </div>
+            {valid ? <></> : <span className='register-date-error'>Please input a valid date. You must be older than 13 years.</span>}
         </div>
     );
 };

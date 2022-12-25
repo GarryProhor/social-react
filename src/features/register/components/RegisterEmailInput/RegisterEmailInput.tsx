@@ -33,6 +33,7 @@ export const RegisterEmailInput:React.FC<RegisterEmailInputProps> = ({email}) =>
                                 name={'email'}
                                 label={'Email'}
                                 changeValue={updateEmail}/>
+            {validEmail ? <></> : <span className='register-email-error'>Please enter a valid email.</span>}
         </div>
     );
 };

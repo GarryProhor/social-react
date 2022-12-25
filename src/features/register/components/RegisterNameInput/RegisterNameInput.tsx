@@ -38,11 +38,11 @@ export const RegisterNameInput:React.FC<RegisterNameInputProps> = ({firstName, l
         <div className='register-name-input'>
             <div className='register-name-content'>
                 <ValidatedTextInput valid={firstValid} name={'firstName'} label={'First'} changeValue={updateName} data={firstName}/>
-                {firstName ? <></> : <span className='register-name-error'>What's your name?</span>}
+                {firstName ? <></> : <span className='register-name-error'>What's your first name?</span>}
             </div>
             <div className='register-name-content'>
                 <ValidatedTextInput valid={lastValid} name={'lastName'} label={'Last'} changeValue={updateName} data={lastName}/>
-                {lastName ? <></> : <span className='register-name-error'>What's your name?</span>}
+                {lastName ? <></> : <span className='register-name-error'>What's your last name?</span>}
             </div>
         </div>
     );
