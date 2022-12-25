@@ -4,6 +4,7 @@ import {incrementStep} from "../../../../redux/Slices/RegisterSlice";
 import {AppDispatch} from "../../../../redux/Store";
 import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 import './RegisterFormTwo.css';
+import {Checkbox} from "../../../../components/Checkbox/Checkbox";
 
 export const RegisterFormTwo:React.FC = () => {
     const dispatch:AppDispatch = useDispatch();
@@ -25,7 +26,7 @@ export const RegisterFormTwo:React.FC = () => {
                     <p className='reg-step-two-privacy'>
                         Social uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.
                     </p>
-                    <input className='reg-step-two-checkbox' type='checkbox'/>
+                    <Checkbox />
                 </div>
                 <p className='reg-step-two-policy'>
                     By signing up? you agree to our <span className='reg-step-two-link'>Terms</span>, <span className='reg-step-two-link'>Privacy Policy</span> and <span className='reg-step-two-link'>Cookie use</span>. Social may use your contact information, including your
