@@ -25,12 +25,11 @@ export const RegisterFormTwo:React.FC = () => {
                     <p className='reg-step-two-privacy'>
                         Social uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.
                     </p>
+                    <input className='reg-step-two-checkbox' type='checkbox'/>
                 </div>
                 <p className='reg-step-two-policy'>
-                    By signing up? you agree to our <span className='reg-step-two-link'>Terms</span>, <span className='reg-step-two-link'>Privacy Policy</span>
-                    and <span className='reg-step-two-link'>Cookie use</span>. Social may use your contact information, including your
-                    email address and phone number for the purpose outline in our Privacy Policy.
-                    <span className='reg-step-two-link'>Cookie use</span>.
+                    By signing up? you agree to our <span className='reg-step-two-link'>Terms</span>, <span className='reg-step-two-link'>Privacy Policy</span> and <span className='reg-step-two-link'>Cookie use</span>. Social may use your contact information, including your
+                    email address and phone number for the purpose outline in our Privacy Policy. <span className='reg-step-two-link'>Learn more</span>.
                 </p>
             </div>
             <StyledNextButton active={true} color={'black'} onClick={nextStep}>Next</StyledNextButton>
