@@ -9,9 +9,10 @@ interface ValidatedTextInputProps{
     label:string;
     changeValue(e:React.ChangeEvent<HTMLInputElement>):void;
     data?:string;
+    attributes?: Record<string, string | number | boolean>;
 }
 
-export const ValidatedTextInput:React.FC<ValidatedTextInputProps> = ({valid, label, name, changeValue, data}) => {
+export const ValidatedTextInput:React.FC<ValidatedTextInputProps> = ({valid, label, name, changeValue, data, attributes}) => {
     const [value, setValue] = useState<string>(data ? data : '');
     const [borderActive, setBorderActive] = useState<boolean>(false);
     const [labelActive, setLabelActive] = useState<boolean>(false);
@@ -46,7 +47,12 @@ export const ValidatedTextInput:React.FC<ValidatedTextInputProps> = ({valid, lab
                        onBlur={focus}
                        onChange={update}
                        value={data}
+                       {...attributes}
                 />
+                {attributes && attributes.maxLength && (borderActive || !valid) ?
+                    <span className='validated-input-remainder'>{value.length} / {attributes.maxLength}</span>
+                    : <></>
+                }
             </StyledInputBox>
         </div>
     );

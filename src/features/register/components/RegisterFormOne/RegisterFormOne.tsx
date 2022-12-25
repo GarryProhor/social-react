@@ -8,14 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../../redux/Store";
 import {incrementStep} from "../../../../redux/Slices/RegisterSlice";
 
-interface FormOneState {
-    firstName: string;
-    lastName: string;
-    email: string;
-    dateOfBirth: string;
-}
 
-export const RegisterFormOne: React.FC = () => {
+export const RegisterFormOne:React.FC = () => {
     const registerState = useSelector((state:RootState) => state.register);
     const dispatch:AppDispatch = useDispatch();
 
@@ -35,8 +29,15 @@ export const RegisterFormOne: React.FC = () => {
     return (
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
+                <h1 className='reg-step-one-header'>Create your account</h1>
                 <RegisterNameInput firstName={registerState.firstName} lastName={registerState.lastName}/>
                 <RegisterEmailInput email={registerState.email}/>
+                <div className='reg-step-one-dob-disclaimer'>
+                    <p className='reg-step-one-dob-header'>Date of Birth</p>
+                    <span className='reg-step-one-dob-text'>
+                        This will not be show publicly. Confirm your own age, even if this account is for a business, pet, or something else.
+                    </span>
+                </div>
                 <RegisterDateInput date={registerState.dob}/>
             </div>
             <StyledNextButton disabled={!buttonActive}
