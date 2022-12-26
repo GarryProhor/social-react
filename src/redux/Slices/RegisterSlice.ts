@@ -1,5 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dob} from "../../utils/GlobalInterfaces";
+import axios from "axios";
+import {stat} from "fs";
 
 interface RegisterSliceState{
     loading:boolean;
@@ -19,6 +21,13 @@ interface updatePayload{
     value:string|number|boolean;
 }
 
+interface RegisterUser{
+    firstName:string;
+    lastName:string;
+    email:string;
+    dob:string;
+}
+
 const initialState:RegisterSliceState={
     loading:false,
     error:false,
@@ -36,6 +45,18 @@ const initialState:RegisterSliceState={
     dobValid:false,
     step:1
 }
+
+export const registerUser = createAsyncThunk(
+    'register/register',
+    async (user:RegisterUser, thunkAPI)=>{
+        try{
+            const req = await axios.post('http://localhost:8080/auth/register', user);
+            return await  req.data;
+        }catch (e){
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+)
 
 export const RegisterSlice = createSlice({
    name:'register',
@@ -76,7 +97,26 @@ export const RegisterSlice = createSlice({
                return state;
            }
        },
-   }
+   },
+    extraReducers: (builder) =>{
+       builder.addCase(registerUser.pending, (state, action) =>{
+           state.loading = true;
+           return state;
+       });
+
+       builder.addCase(registerUser.fulfilled, (state, action) =>{
+           state.loading = false;
+           state.error = false;
+           state.step++;
+           return state;
+       });
+
+       builder.addCase(registerUser.rejected, (state, action) =>{
+          state.error = true;
+          state.loading = false;
+          return state;
+       });
+    }
 });
 
 export const {updateRegister, incrementStep, decrementStep} = RegisterSlice.actions;
