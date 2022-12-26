@@ -26,11 +26,11 @@ export const ValidatedDisplay:React.FC<ValidatedDisplayProps> = ({label,value}) 
         <div className='validated-input'>
             <StyledInputBox active={false} valid={true}>
                 <StyledInputBox color={focused ? 'blue' : 'gray'}
-                                active={focused}
+                                active={!focused}
                                 valid={true}>
                     {label}
                 </StyledInputBox>
-                <input className='validated-input-value' onFocus={()=>{}} value={value}/>
+                <input className='validated-input-value' onFocus={focus} value={value}/>
             </StyledInputBox>
         </div>
     );
