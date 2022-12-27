@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './RegisterFormFour.css';
 import {Checkbox} from "../../../../components/Checkbox/Checkbox";
 import {DropDown} from "../../../../components/DropDown/DropDown";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
+import {countryCodeDropDown} from "../../utils/RegisterModalUtils";
 
 export const RegisterFormFour: React.FC = () => {
+
+    const [phoneCode, setPhoneCode] = useState<string>('+1');
+    const [phoneNumber, setPhoneNumber] = useState<string>('');
+
+    const changeCode = (e:React.ChangeEvent<HTMLSelectElement>) =>{
+        setPhoneCode(e.target.value.split(" ")[0]);
+    }
+    const changePhoneNumber = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setPhoneNumber(e.target.value);
+    }
+
+    useEffect(()=>{
+        console.log(phoneCode, phoneNumber);
+    }, [phoneCode, phoneNumber])
+
     return (
         <div className='reg-step-four-container'>
             <div className='reg-step-four-content'>
@@ -13,15 +29,15 @@ export const RegisterFormFour: React.FC = () => {
                 <p>Enter the phone number you would like to associate with your Social account. You won't get a
                     verification code sent here.</p>
                 <div className='reg-step-four-inputs'>
-                    <DropDown content={()=>{return[]}}
-                              change={()=>console.log('changing')}
+                    <DropDown content={countryCodeDropDown}
+                              change={changeCode}
                               label={'Country Code'}
                               defaultValue={'United States +1'}
                     />
                     <ValidatedTextInput valid={true}
                                         name={'phoneNumber'}
                                         label={'Your Phone Number'}
-                                        changeValue={()=>console.log('Phone number')}
+                                        changeValue={changePhoneNumber}
                     />
                 </div>
                 <div className='reg-step-four-check-group'>

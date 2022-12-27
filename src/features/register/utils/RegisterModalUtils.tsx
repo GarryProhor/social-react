@@ -3,6 +3,8 @@ import {RegisterFormTwo} from "../components/RegisterFormTwo/RegisterFormTwo";
 import {RegisterFormThree} from "../components/RegisterFormThree/RegisterFormThree";
 import {RegisterFormFour} from "../components/RegisterFormFour/RegisterFormFour";
 
+import data from '../../../data/codes.json';
+
 export const determineModalContent = (step:number):JSX.Element =>{
     switch (step) {
         case 1:
@@ -20,4 +22,21 @@ export const determineModalContent = (step:number):JSX.Element =>{
        default:
             return <></>
     }
+}
+
+export const countryCodeDropDown = ():JSX.Element[] =>{
+    let options = data.filter((country) =>{
+        if(country.code !== 'US'){
+            return country;
+        }
+    }).map((country) =>{
+        return <option value={`${country.dial_code} ${country.name}`} key={country.code}>
+            {`${country.dial_code} ${country.name}`}
+        </option>
+    });
+
+    options.unshift(
+        <option value={'+1 United States'} key={'US'}>{'+1 United States'}</option>
+    );
+    return options;
 }
