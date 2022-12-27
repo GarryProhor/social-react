@@ -7,8 +7,14 @@ import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedT
 import {countryCodeDropDown} from "../../utils/RegisterModalUtils";
 import {validatePhone} from "../../../../services/Validators";
 import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../../../redux/Store";
+import {updateUserPhone} from "../../../../redux/Slices/RegisterSlice";
 
 export const RegisterFormFour: React.FC = () => {
+
+    const state = useSelector((state:RootState) => state.register);
+    const dispatch:AppDispatch = useDispatch();
 
     const [phoneCode, setPhoneCode] = useState<string>('+1');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -19,6 +25,13 @@ export const RegisterFormFour: React.FC = () => {
     }
     const changePhoneNumber = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setPhoneNumber(e.target.value);
+    }
+
+    const sendPhoneNumber = () =>{
+        dispatch(updateUserPhone({
+            userName: state.userName,
+            phone: phoneNumber
+        }))
     }
 
     useEffect(()=>{
