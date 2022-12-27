@@ -2,6 +2,8 @@ import React from 'react';
 
 import './RegisterFormFour.css';
 import {Checkbox} from "../../../../components/Checkbox/Checkbox";
+import {DropDown} from "../../../../components/DropDown/DropDown";
+import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 
 export const RegisterFormFour: React.FC = () => {
     return (
@@ -10,7 +12,18 @@ export const RegisterFormFour: React.FC = () => {
                 <h1>Add a phone number</h1>
                 <p>Enter the phone number you would like to associate with your Social account. You won't get a
                     verification code sent here.</p>
-
+                <div className='reg-step-four-inputs'>
+                    <DropDown content={()=>{return[]}}
+                              change={()=>console.log('changing')}
+                              label={'Country Code'}
+                              defaultValue={'United States +1'}
+                    />
+                    <ValidatedTextInput valid={true}
+                                        name={'phoneNumber'}
+                                        label={'Your Phone Number'}
+                                        changeValue={()=>console.log('Phone number')}
+                    />
+                </div>
                 <div className='reg-step-four-check-group'>
                     <p>Let people who have your phone number find and connect with you on Social. <span
                         className='reg-step-four-link'>Learn more</span>.</p>
