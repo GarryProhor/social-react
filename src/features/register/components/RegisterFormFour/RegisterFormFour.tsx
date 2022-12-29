@@ -39,6 +39,7 @@ export const RegisterFormFour: React.FC = () => {
         if(phoneNumber){
             setValidNumber(validatePhone(phoneNumber));
         }
+        console.log(state);
     }, [phoneCode, phoneNumber])
 
     return (
@@ -75,7 +76,7 @@ export const RegisterFormFour: React.FC = () => {
                 <StyledNextButton active={(phoneNumber && validNumber) ? true : false}
                                   color={'black'}
                                   disabled={(phoneNumber && validNumber) ? false : true}
-                                  onClick={() => console.log('update phone on db')}>
+                                  onClick={sendPhoneNumber}>
                     Update Number
                 </StyledNextButton>
             </div>

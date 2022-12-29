@@ -67,7 +67,7 @@ export const updateUserPhone = createAsyncThunk(
   'register/phone',
   async (body:UpdatePhone, thunkAPI) =>{
       try{
-          const rew = await axios.put('https://localhost:8080/auth/update/phone', body);
+          const rew = await axios.put('http://localhost:8080/auth/update/phone', body);
 
       }catch (e) {
           return thunkAPI.rejectWithValue(e);
@@ -130,9 +130,14 @@ export const RegisterSlice = createSlice({
        });
 
        builder.addCase(registerUser.fulfilled, (state, action) =>{
-           state.loading = false;
-           state.error = false;
-           state.step++;
+          let nextStep =state.step + 1;
+          state = {
+              ...state,
+              userName:action.payload.userName,
+              loading:false,
+              error:false,
+              step: nextStep
+          }
            return state;
        });
 
