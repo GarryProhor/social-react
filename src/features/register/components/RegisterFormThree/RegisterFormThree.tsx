@@ -6,17 +6,20 @@ import {useSelector, useDispatch} from "react-redux";
 import {RootState, AppDispatch} from "../../../../redux/Store";
 import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 import {registerUser} from "../../../../redux/Slices/RegisterSlice";
+import {cleanDateForRequest} from '../../utils/DateUtinls'
 
 export const RegisterFormThree: React.FC = () => {
     const state = useSelector((state: RootState) => state.register);
     const dispatch:AppDispatch = useDispatch();
 
     const submitUser = () =>{
+
+
         const user = {
             firstName: state.firstName,
             lastName: state.lastName,
             email: state.email,
-            dob: `${state.dob.year}-${state.dob.month}-${state.dob.day}`
+            dob: cleanDateForRequest(state.dob)
         }
         console.log('We are attempting to register the user')
 

@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dob} from "../../utils/GlobalInterfaces";
 import axios from "axios";
-import {stat} from "fs";
 
 interface RegisterSliceState{
     loading:boolean;
