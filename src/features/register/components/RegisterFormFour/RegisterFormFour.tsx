@@ -46,7 +46,7 @@ export const RegisterFormFour: React.FC = () => {
         <div className='reg-step-four-container'>
             <div className='reg-step-four-content'>
                 <h1>Add a phone number</h1>
-                <p>Enter the phone number you would like to associate with your Social account. You won't get a
+                <p className='reg-step-four-subhead'>Enter the phone number you would like to associate with your Social account. You won't get a
                     verification code sent here.</p>
                 <div className='reg-step-four-inputs'>
                     <DropDown content={countryCodeDropDown}
@@ -73,13 +73,13 @@ export const RegisterFormFour: React.FC = () => {
                             className='reg-step-four-link'>See our Privacy Policy for more information.</span>.</p>
                     <Checkbox/>
                 </div>
-                <StyledNextButton active={(phoneNumber && validNumber) ? true : false}
-                                  color={'black'}
-                                  disabled={(phoneNumber && validNumber) ? false : true}
-                                  onClick={sendPhoneNumber}>
-                    Update Number
-                </StyledNextButton>
             </div>
+            <StyledNextButton active={(phoneNumber && validNumber) ? true : false}
+                              color={'black'}
+                              disabled={(phoneNumber && validNumber) ? false : true}
+                              onClick={sendPhoneNumber}>
+                Update Number
+            </StyledNextButton>
         </div>
     );
 };
