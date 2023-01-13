@@ -67,7 +67,7 @@ export const updateUserPhone = createAsyncThunk(
   async (body:UpdatePhone, thunkAPI) =>{
       try{
           const rew = await axios.put('http://localhost:8080/auth/update/phone', body);
-
+          const email = await axios.post('http://localhost:8080/auth/email/code', {userName:body.userName});
       }catch (e) {
           return thunkAPI.rejectWithValue(e);
       }
