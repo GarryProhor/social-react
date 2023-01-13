@@ -8,6 +8,10 @@ import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 export const RegisterFormFive:React.FC = () => {
     const state = useSelector((state:RootState) => state.register);
     const [code, setCode] = useState<string>('');
+
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setCode(e.target.value);
+    }
     return (
         <div className='reg-step-five-container'>
             <div className="reg-step-five-content">
