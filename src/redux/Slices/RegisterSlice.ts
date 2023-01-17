@@ -73,6 +73,16 @@ export const updateUserPhone = createAsyncThunk(
       }
   }
 );
+export const resendEmail = createAsyncThunk(
+  'register/resend',
+  async (userName: string, thunkAPI) =>{
+      try {
+          const req = await axios.post('http://localhost:8080/auth/email/code', {userName});
+      }catch (e) {
+          return thunkAPI.rejectWithValue(e);
+      }
+  }
+);
 
 export const RegisterSlice = createSlice({
    name:'register',
@@ -127,6 +137,13 @@ export const RegisterSlice = createSlice({
            }
            return state;
        });
+       builder.addCase(resendEmail.pending, (state, action) =>{
+           state = {
+               ...state,
+               loading: true
+           };
+           return state;
+       });
 
        builder.addCase(registerUser.fulfilled, (state, action) =>{
           let nextStep =state.step + 1;
@@ -150,6 +167,14 @@ export const RegisterSlice = createSlice({
             }
             return state;
         });
+        builder.addCase(resendEmail.fulfilled, (state, action) =>{
+           state ={
+             ...state,
+             loading: false,
+             error: false
+           };
+           return state;
+        });
 
        builder.addCase(registerUser.rejected, (state, action) =>{
           state.error = true;
@@ -163,6 +188,14 @@ export const RegisterSlice = createSlice({
                 loading: false,
                 error: true
             }
+            return state;
+        });
+        builder.addCase(resendEmail.rejected, (state, action)=>{
+            state = {
+                ...state,
+                loading: false,
+                error: true
+            };
             return state;
         });
     }
