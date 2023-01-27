@@ -9,7 +9,7 @@ import {validatePhone} from "../../../../services/Validators";
 import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../../redux/Store";
-import {updateUserPhone} from "../../../../redux/Slices/RegisterSlice";
+import {updateRegister, updateUserPhone} from "../../../../redux/Slices/RegisterSlice";
 
 export const RegisterFormFour: React.FC = () => {
 
@@ -25,6 +25,10 @@ export const RegisterFormFour: React.FC = () => {
     }
     const changePhoneNumber = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setPhoneNumber(e.target.value);
+        dispatch(updateRegister({
+            name: 'phoneNumber',
+            value: e.target.value
+        }));
     }
 
     const sendPhoneNumber = () =>{
