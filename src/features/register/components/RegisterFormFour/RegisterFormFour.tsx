@@ -63,7 +63,7 @@ export const RegisterFormFour: React.FC = () => {
                                         label={'Your Phone Number'}
                                         changeValue={changePhoneNumber}
                     />
-                    {validNumber ? <></> : <p className='reg-step-four-invalid'>Please enter a valid 10 digit number</p>}
+                    {validNumber ? <></> : <p className='reg-step-four-invalid'>Please enter a valid 9 digit number</p>}
                 </div>
                 <div className='reg-step-four-check-group'>
                     <p>Let people who have your phone number find and connect with you on Social. <span
@@ -76,7 +76,9 @@ export const RegisterFormFour: React.FC = () => {
                         including account security, spam, fraud, and abuse prevention.<span
                             className='reg-step-four-link'>See our Privacy Policy for more information.</span>.</p>
                     <Checkbox/>
+
                 </div>
+
             </div>
             <StyledNextButton active={(phoneNumber && validNumber) ? true : false}
                               color={'black'}

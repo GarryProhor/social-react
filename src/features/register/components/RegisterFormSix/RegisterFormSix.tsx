@@ -50,6 +50,7 @@ export const RegisterFormSix:React.FC = () => {
                             }}/>}
                     </div>
                 </div>
+
             </div>
             <StyledNextButton active={password.length >= 8}
                               disabled={!(password.length >= 8)}

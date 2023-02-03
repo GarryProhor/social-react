@@ -36,11 +36,11 @@ export const RegisterFormFive:React.FC = () => {
                                     label={'Verification Code'}
                                     changeValue={handleChange}/>
                 <p className="reg-step-five-message" onClick={resend}>Didn't receive a email?</p>
-                <StyledNextButton active={code ? true : false}
-                                  disabled={code ? false : true}
-                                  color={'black'}
-                                  onClick={verify}>Next</StyledNextButton>
             </div>
+            <StyledNextButton active={code ? true : false}
+                              disabled={code ? false : true}
+                              color={'black'}
+                              onClick={verify}>Next</StyledNextButton>
         </div>
     );
 };

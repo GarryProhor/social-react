@@ -56,5 +56,5 @@ export const validatedEmail = (value:string): boolean =>{
 
 export const validatePhone = (phone:string):boolean =>{
     let stripped = phone.replace(/[^0-9]/ig, '');
-    return stripped.length === 10;
+    return stripped.length === 9;
 }
