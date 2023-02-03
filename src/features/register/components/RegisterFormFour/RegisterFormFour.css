@@ -24,18 +24,16 @@ p{
     justify-content: center;
 }
 .reg-step-four-subhead{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .reg-step-four-check-group{
     padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 0 0 0;
+    margin: 15px 0 5px 0;
 }
-.reg-step-four-check-group>p{
-    margin-right: 25px;
-}
+
 .reg-step-four-link{
     font-size: 15px;
     font-weight: 400;
@@ -46,7 +44,7 @@ p{
     text-decoration: underline;
 }
 .reg-step-four-inputs{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .reg-step-four-invalid{
     color: red;
