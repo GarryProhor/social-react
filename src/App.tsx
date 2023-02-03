@@ -1,10 +1,13 @@
 import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
 import './assets/css/global.css';
 import {Landing} from "./pages/Landing";
 
 
 import {ThemeProvider, createGlobalStyle} from "styled-components";
 import {Theme} from "./utils/GlobalInterfaces";
+import {Feed} from "./pages/Feed";
 
 const theme:Theme = {
   colors:{
@@ -28,7 +31,12 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
         <GlobalStyle/>
-        <Landing/>
+          <Router>
+              <Routes>
+                  <Route path='/' element={<Landing/>}/>
+                  <Route path='/home' element={<Feed/>}/>
+              </Routes>
+          </Router>
       </ThemeProvider>
 
   );

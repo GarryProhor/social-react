@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import {RootState, AppDispatch} from "../../../../redux/Store";
 import {updateUserPassword} from "../../../../redux/Slices/RegisterSlice";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
@@ -15,17 +16,21 @@ export const RegisterFormSix:React.FC = () => {
     const [active, setActive] = useState<boolean>(false);
     const [password, setPassword] = useState<string>("");
 
+    const navigate = useNavigate();
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setPassword(e.target.value)
     }
     const toggleView = () =>{
         setActive(!active);
     }
-    const sendPassword = () =>{
-        dispatch(updateUserPassword({
+    const sendPassword = async () =>{
+       await dispatch(updateUserPassword({
             userName: state.userName,
             password
         }));
+       console.log('navigate');
+
+       navigate('/home');
     }
     return (
         <div className='reg-step-six-container'>
