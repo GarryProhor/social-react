@@ -1,35 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './RegisterFormOne.css';
 import {RegisterDateInput} from "../RegisterDateInput/RegisterDateInput";
 import {RegisterNameInput} from "../RegisterNameInput/RegisterNameInput";
 import {RegisterEmailInput} from "../RegisterEmailInput/RegisterEmailInput";
-import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../../redux/Store";
-import {incrementStep, updateRegister} from "../../../../redux/Slices/RegisterSlice";
-
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../redux/Store";
 
 export const RegisterFormOne:React.FC = () => {
     const registerState = useSelector((state:RootState) => state.register);
-    const dispatch:AppDispatch = useDispatch();
 
-    const [buttonActive, setButtonActive] = useState<boolean>(false);
-
-    const nextPage = () =>{
-        dispatch(updateRegister({
-            name: 'error',
-            value: false
-        }))
-        dispatch(incrementStep());
-    }
-
-    useEffect(() => {
-        if(registerState.dobValid && registerState.emailValid && registerState.firstNameValid && registerState.lastNameValid){
-            setButtonActive(true);
-        }else {
-            setButtonActive(false);
-        }
-    }, [registerState])
     return (
         <div className='reg-step-one-container'>
             <div className="reg-step-one-content">
@@ -44,12 +23,6 @@ export const RegisterFormOne:React.FC = () => {
                 </div>
                 <RegisterDateInput date={registerState.dob}/>
             </div>
-            <StyledNextButton disabled={!buttonActive}
-                              active={buttonActive}
-                              color={"black"}
-                              onClick={nextPage}>
-                Next
-            </StyledNextButton>
         </div>
     );
 };

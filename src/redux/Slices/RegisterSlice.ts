@@ -144,6 +144,7 @@ export const RegisterSlice = createSlice({
        },
        incrementStep(state){
            state.step++;
+           state.error = false;
            return state;
        },
        decrementStep(state){

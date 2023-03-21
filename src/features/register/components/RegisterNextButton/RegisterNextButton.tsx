@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import {StyledNextButtonProps} from "../../../../utils/GlobalInterfaces";
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../../../redux/Store";
+import {incrementStep, registerUser} from "../../../../redux/Slices/RegisterSlice";
+import {cleanDateForRequest} from "../../utils/DateUtinls";
 
 export const StyledNextButton = styled.button<StyledNextButtonProps>`
   width: 75%;
@@ -18,10 +22,55 @@ interface RegisterNextButtonProps{
 }
 export const RegisterNextButton:React.FC<RegisterNextButtonProps> = ({step}) =>{
 
-    return <StyledNextButton disabled={true}
-                             active={false}
-                             color={"black"}
-                             onClick={() => console.log("next step garry")}>
-        {step}
-    </StyledNextButton>
+    const state = useSelector((state:RootState) => state.register);
+    const dispatch:AppDispatch = useDispatch();
+
+    const nextStep = () =>{
+        dispatch(incrementStep());
+    }
+
+    const sendUserInfo = () =>{
+        const user = {
+            firstName: state.firstName,
+            lastName: state.lastName,
+            email: state.email,
+            dob: cleanDateForRequest(state.dob)
+        }
+        console.log('We are attempting to register the user')
+        dispatch(registerUser(user));
+    }
+
+    const determineButtonContent = (step:number):JSX.Element => {
+        switch (step){
+            case 1:
+                let active:boolean = state.dobValid && state.emailValid && state.firstNameValid && state.lastNameValid;
+
+                return <StyledNextButton disabled={!active}
+                                         active={active}
+                                         color={"black"}
+                                         onClick={nextStep}>
+                                         Next
+                       </StyledNextButton>
+            case 2:
+                return  <StyledNextButton active={true}
+                                          color={'black'}
+                                          onClick={nextStep}>
+                                          Next
+                        </StyledNextButton>
+            case 3:
+                return <StyledNextButton active={true}
+                                         color={'blue'}
+                                         onClick={sendUserInfo}>
+                                         Sing Up
+                       </StyledNextButton>
+            default:
+                return <StyledNextButton disabled={true}
+                                         active={false}
+                                         color={"black"}
+                                         onClick={() => console.log("next step garry")}>
+                    {step}
+                </StyledNextButton>
+        }
+    }
+    return determineButtonContent(step);
 }
