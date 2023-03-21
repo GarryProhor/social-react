@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Modal} from "../../../../components/Modal/Modal";
+
+import {Modal} from "../../../../components/Modal/Modal"
 import './RegisterModal.css';
 import {RegistrationStepCounter} from "../RegisterStepCounter/RegistrationStepCounter";
 import {determineModalContent} from "../../utils/RegisterModalUtils";
@@ -15,14 +16,7 @@ export const RegisterModal:React.FC = () => {
         dispatch(decrementStep());
     }
     return (
-            <Modal>
-               <div className="register-container">
-                   <RegistrationStepCounter step={state.step} changeStep={stepButtonClicked}/>
-                   <div className="register-modal-content">
-                       {determineModalContent(state.step)}
-                   </div>
-               </div>
-            </Modal>
+            <Modal topContent={<div>topContent</div>} content={<div>Content</div>} bottomContent={<div>bottomContent</div>}/>
     );
 };
 
