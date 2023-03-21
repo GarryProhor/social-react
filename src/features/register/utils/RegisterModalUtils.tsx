@@ -3,35 +3,37 @@ import {RegisterFormTwo} from "../components/RegisterFormTwo/RegisterFormTwo";
 import {RegisterFormThree} from "../components/RegisterFormThree/RegisterFormThree";
 import {RegisterFormFour} from "../components/RegisterFormFour/RegisterFormFour";
 import {RegisterFormFive} from "../components/RegisterFormFive/RegisterFormFive";
-
-import data from '../../../data/codes.json';
 import {RegisterFormSix} from "../components/RegisterFormSix/RegisterFormSix";
+import data from '../../../data/codes.json';
+import React from "react";
 
-export const determineModalContent = (step:number):JSX.Element =>{
+
+export const determineModalContent = (step: number): JSX.Element => {
     switch (step) {
         case 1:
             return <RegisterFormOne/>
         case 2:
-            return <RegisterFormTwo />
+            return <RegisterFormTwo/>
         case 3:
             return <RegisterFormThree/>
         case 4:
-            return <RegisterFormFour />
+            return <RegisterFormFour/>
         case 5:
-            return <RegisterFormFive />
+            return <RegisterFormFive/>
         case 6:
-            return <RegisterFormSix />
-       default:
+            return <RegisterFormSix/>
+        default:
             return <></>
     }
 }
 
-export const countryCodeDropDown = ():JSX.Element[] =>{
-    let options = data.filter((country) =>{
-        if(country.code !== 'US'){
+
+export const countryCodeDropDown = (): JSX.Element[] => {
+    let options = data.filter((country) => {
+        if (country.code !== 'US') {
             return country;
         }
-    }).map((country) =>{
+    }).map((country) => {
         return <option value={`${country.dial_code} ${country.name}`} key={country.code}>
             {`${country.dial_code} ${country.name}`}
         </option>
