@@ -16,6 +16,8 @@ interface RegisterSliceState{
     step:number;
     userName:string;
     phoneNumber: string;
+    phoneNumberValid: boolean;
+    code: string
 }
 interface updatePayload{
     name:string;
@@ -59,6 +61,8 @@ const initialState:RegisterSliceState={
     step:1,
     userName:'',
     phoneNumber: '',
+    phoneNumberValid: false,
+    code: '',
 }
 
 export const registerUser = createAsyncThunk(

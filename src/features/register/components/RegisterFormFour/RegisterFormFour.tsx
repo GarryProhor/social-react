@@ -6,10 +6,9 @@ import {DropDown} from "../../../../components/DropDown/DropDown";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 import {countryCodeDropDown} from "../../utils/RegisterModalUtils";
 import {validatePhone} from "../../../../services/Validators";
-import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../../redux/Store";
-import {updateRegister, updateUserPhone} from "../../../../redux/Slices/RegisterSlice";
+import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 
 export const RegisterFormFour: React.FC = () => {
 
@@ -31,19 +30,16 @@ export const RegisterFormFour: React.FC = () => {
         }));
     }
 
-    const sendPhoneNumber = () =>{
-        dispatch(updateUserPhone({
-            userName: state.userName,
-            phone: phoneNumber
-        }))
-    }
 
     useEffect(()=>{
         console.log(phoneCode, phoneNumber);
         if(phoneNumber){
             setValidNumber(validatePhone(phoneNumber));
+            dispatch(updateRegister({
+                name: "phoneNumberValid",
+                value: validatePhone(phoneNumber)
+            }));
         }
-        console.log(state);
     }, [phoneCode, phoneNumber])
 
     return (
@@ -76,16 +72,8 @@ export const RegisterFormFour: React.FC = () => {
                         including account security, spam, fraud, and abuse prevention.<span
                             className='reg-step-four-link'>See our Privacy Policy for more information.</span>.</p>
                     <Checkbox/>
-
                 </div>
-
             </div>
-            <StyledNextButton active={(phoneNumber && validNumber) ? true : false}
-                              color={'black'}
-                              disabled={(phoneNumber && validNumber) ? false : true}
-                              onClick={sendPhoneNumber}>
-                Update Number
-            </StyledNextButton>
         </div>
     );
 };
