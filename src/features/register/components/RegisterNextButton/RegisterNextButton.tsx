@@ -3,8 +3,15 @@ import {StyledNextButtonProps} from "../../../../utils/GlobalInterfaces";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../../redux/Store";
-import {incrementStep, registerUser, sendVerification, updateUserPhone} from "../../../../redux/Slices/RegisterSlice";
+import {
+    incrementStep,
+    registerUser,
+    sendVerification,
+    updateUserPassword,
+    updateUserPhone
+} from "../../../../redux/Slices/RegisterSlice";
 import {cleanDateForRequest} from "../../utils/DateUtinls";
+import {useNavigate} from "react-router-dom";
 
 export const StyledNextButton = styled.button<StyledNextButtonProps>`
   width: 75%;
@@ -54,6 +61,13 @@ export const RegisterNextButton:React.FC<RegisterNextButtonProps> = ({step}) =>{
         }))
     }
 
+    const sendPassword = async () =>{
+        await dispatch(updateUserPassword({
+            userName: state.userName,
+            password: state.password
+        }));
+    }
+
     const determineButtonContent = (step:number):JSX.Element => {
         switch (step){
             case 1:
@@ -91,6 +105,12 @@ export const RegisterNextButton:React.FC<RegisterNextButtonProps> = ({step}) =>{
                                          disabled={!stepFiveActive}
                                          color={'black'}
                                          onClick={verifyEmail}>
+                            Next
+                       </StyledNextButton>
+            case 6:
+                return <StyledNextButton active={state.password.length >= 8}
+                                         disabled={!(state.password.length >= 8)}
+                                         onClick={sendPassword} color='black'>
                             Next
                        </StyledNextButton>
             default:

@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {RootState, AppDispatch} from "../../../../redux/Store";
-import {updateUserPassword} from "../../../../redux/Slices/RegisterSlice";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import {StyledNextButton} from "../RegisterNextButton/RegisterNextButton";
 import './RegisterFormSix.css';
+import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 export const RegisterFormSix:React.FC = () => {
 
     const state = useSelector((state:RootState) => state.register);
@@ -19,19 +18,23 @@ export const RegisterFormSix:React.FC = () => {
     const navigate = useNavigate();
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setPassword(e.target.value)
+        dispatch(updateRegister({
+            name: 'password',
+            value: e.target.value
+        }))
     }
     const toggleView = () =>{
         setActive(!active);
     }
-    const sendPassword = async () =>{
-       await dispatch(updateUserPassword({
-            userName: state.userName,
-            password
-        }));
-       console.log('navigate');
 
-       navigate('/home');
-    }
+    useEffect(()=>{
+        if(state.login){
+            //store some user info into local storage, that way we can load the user into
+            // the user slice when we hit the feed page
+            navigate('/home');
+        }
+    }, [state.login]);
+
     return (
         <div className='reg-step-six-container'>
             <div className='reg-step-six-content'>
@@ -55,13 +58,7 @@ export const RegisterFormSix:React.FC = () => {
                             }}/>}
                     </div>
                 </div>
-
             </div>
-            <StyledNextButton active={password.length >= 8}
-                              disabled={!(password.length >= 8)}
-                              onClick={sendPassword} color='black'>
-                Next
-            </StyledNextButton>
         </div>
     );
 };
