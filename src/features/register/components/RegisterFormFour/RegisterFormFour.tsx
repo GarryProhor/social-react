@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
-
-import './RegisterFormFour.css';
 import {Checkbox} from "../../../../components/Checkbox/Checkbox";
 import {DropDown} from "../../../../components/DropDown/DropDown";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 import {countryCodeDropDown} from "../../utils/RegisterModalUtils";
 import {validatePhone} from "../../../../services/Validators";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../../redux/Store";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../../../redux/Store";
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
+
+import '../RegisterForms/RegisterForm.css';
+import '../../../../assets/css/global.css';
 
 export const RegisterFormFour: React.FC = () => {
 
-    const state = useSelector((state:RootState) => state.register);
+
     const dispatch:AppDispatch = useDispatch();
 
     const [phoneCode, setPhoneCode] = useState<string>('+1');
@@ -43,12 +44,12 @@ export const RegisterFormFour: React.FC = () => {
     }, [phoneCode, phoneNumber])
 
     return (
-        <div className='reg-step-four-container'>
-            <div className='reg-step-four-content'>
-                <h1>Add a phone number</h1>
-                <p className='reg-step-four-subhead'>Enter the phone number you would like to associate with your Social account. You won't get a
+        <div className='register-container'>
+            <div className='register-content'>
+                <h1 className='register-header-2'>Add a phone number</h1>
+                <p className='register-text color-gray'>Enter the phone number you would like to associate with your Social account. You won't get a
                     verification code sent here.</p>
-                <div className='reg-step-four-inputs'>
+                <div className={validNumber ? 'register-four-input-wrapper' : 'register-four-input-wrapper-condensed'}>
                     <DropDown content={countryCodeDropDown}
                               change={changeCode}
                               label={'Country Code'}
@@ -59,18 +60,18 @@ export const RegisterFormFour: React.FC = () => {
                                         label={'Your Phone Number'}
                                         changeValue={changePhoneNumber}
                     />
-                    {validNumber ? <></> : <p className='reg-step-four-invalid'>Please enter a valid 9 digit number</p>}
+                    {validNumber ? <></> : <p className='register-error color-red'>Please enter a valid 9 digit number</p>}
                 </div>
-                <div className='reg-step-four-check-group'>
-                    <p>Let people who have your phone number find and connect with you on Social. <span
-                        className='reg-step-four-link'>Learn more</span>.</p>
+                <div className='register-four-checkbox-wrapper'>
+                    <p className='register-text color-gray'>Let people who have your phone number find and connect with you on Social. <span
+                        className='register-link color-blue'>Learn more</span>.</p>
                     <Checkbox/>
                 </div>
-                <div className='reg-step-four-check-group'>
-                    <p>Let Social use your phone number to personalize our services, including ads (if permitted by your
+                <div className='register-four-checkbox-wrapper'>
+                    <p className='register-text color-gray'>Let Social use your phone number to personalize our services, including ads (if permitted by your
                         Ads preferences). If you don't enable this, Social will still use your phone number for purposes
                         including account security, spam, fraud, and abuse prevention.<span
-                            className='reg-step-four-link'>See our Privacy Policy for more information.</span>.</p>
+                            className='register-link color-blue'>See our Privacy Policy for more information.</span>.</p>
                     <Checkbox/>
                 </div>
             </div>
