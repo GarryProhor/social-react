@@ -5,7 +5,7 @@ import {RegisterEmailInput} from "../RegisterEmailInput/RegisterEmailInput";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/Store";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 export const RegisterFormOne:React.FC = () => {
     const registerState = useSelector((state:RootState) => state.register);

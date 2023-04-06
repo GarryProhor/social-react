@@ -1,7 +1,7 @@
 import React from 'react';
 import {Checkbox} from "../../../../components/Checkbox/Checkbox";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 
 export const RegisterFormTwo:React.FC = () => {

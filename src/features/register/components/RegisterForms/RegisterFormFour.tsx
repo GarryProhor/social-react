@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../../redux/Store";
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 
 export const RegisterFormFour: React.FC = () => {

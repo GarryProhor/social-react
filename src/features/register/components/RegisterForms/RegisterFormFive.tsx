@@ -4,7 +4,7 @@ import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedT
 import {AppDispatch, RootState} from "../../../../redux/Store";
 import {resendEmail, updateRegister} from "../../../../redux/Slices/RegisterSlice";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 
 export const RegisterFormFive:React.FC = () => {

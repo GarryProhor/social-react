@@ -7,7 +7,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 
 export const RegisterFormSix:React.FC = () => {

@@ -1,7 +1,11 @@
 import React from 'react';
+
+import RegisterModal from "../features/register";
+
 import './Landing.css';
 import '../assets/css/global.css'
-import {RegisterModal} from "../features/register/components/RegisterModal/RegisterModal";
+
+
 
 export const Landing:React.FC = () => {
     return (

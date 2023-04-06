@@ -4,7 +4,7 @@ import {stringifyDate} from "../../utils/DateUtinls";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/Store";
 
-import '../RegisterForms/RegisterForm.css';
+import './RegisterForm.css';
 import '../../../../assets/css/global.css';
 
 export const RegisterFormThree: React.FC = () => {
