@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import './RegisterFormFive.css';
 import {useSelector, useDispatch} from "react-redux";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 import {AppDispatch, RootState} from "../../../../redux/Store";
 import {resendEmail, updateRegister} from "../../../../redux/Slices/RegisterSlice";
+
+import '../RegisterForms/RegisterForm.css';
+import '../../../../assets/css/global.css';
 
 export const RegisterFormFive:React.FC = () => {
     const state = useSelector((state:RootState) => state.register);
@@ -25,15 +27,17 @@ export const RegisterFormFive:React.FC = () => {
     };
 
     return (
-        <div className='reg-step-five-container'>
-            <div className="reg-step-five-content">
-                <h1>We sent you a code</h1>
-                <p>Enter it bellow to verify {state.email}</p>
-                <ValidatedTextInput valid={true}
-                                    name={'code'}
-                                    label={'Verification Code'}
-                                    changeValue={handleChange}/>
-                <p className="reg-step-five-message" onClick={resend}>Didn't receive a email?</p>
+        <div className='register-container'>
+            <div className="register-content">
+                <h1 className='register-header-2'>We sent you a code</h1>
+                <p className='register-text color-gray'>Enter it bellow to verify {state.email}</p>
+                <div className="register-five-input-wrapper">
+                    <ValidatedTextInput valid={true}
+                                        name={'code'}
+                                        label={'Verification Code'}
+                                        changeValue={handleChange}/>
+                    <p className="register-five-message color-blue" onClick={resend}>Didn't receive a email?</p>
+                </div>
             </div>
         </div>
     );

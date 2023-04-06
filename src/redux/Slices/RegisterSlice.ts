@@ -60,7 +60,7 @@ const initialState:RegisterSliceState={
         year:0
     },
     dobValid:false,
-    step:4,
+    step:6,
     userName:'',
     phoneNumber: '',
     phoneNumberValid: false,

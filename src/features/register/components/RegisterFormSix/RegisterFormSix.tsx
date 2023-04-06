@@ -5,15 +5,18 @@ import {RootState, AppDispatch} from "../../../../redux/Store";
 import {ValidatedTextInput} from "../../../../components/ValidatedInput/ValidedTextInput";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import './RegisterFormSix.css';
 import {updateRegister} from "../../../../redux/Slices/RegisterSlice";
+
+import '../RegisterForms/RegisterForm.css';
+import '../../../../assets/css/global.css';
+
 export const RegisterFormSix:React.FC = () => {
 
     const state = useSelector((state:RootState) => state.register);
     const dispatch:AppDispatch = useDispatch();
 
     const [active, setActive] = useState<boolean>(false);
-    const [password, setPassword] = useState<string>("");
+    const [, setPassword] = useState<string>("");
 
     const navigate = useNavigate();
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -36,11 +39,11 @@ export const RegisterFormSix:React.FC = () => {
     }, [state.login]);
 
     return (
-        <div className='reg-step-six-container'>
-            <div className='reg-step-six-content'>
-                <h1>You'll need a password</h1>
-                <p>Make sure it's 8 characters or more.</p>
-                <div className='reg-step-six-password'>
+        <div className='register-container'>
+            <div className='register-content'>
+                <h1 className='register-header-2'>You'll need a password</h1>
+                <p className='register-text color-gray'>Make sure it's 8 characters or more.</p>
+                <div className='register-six-password'>
                     <ValidatedTextInput valid={true}
                                         name={'password'}
                                         label={'Password'}
@@ -49,7 +52,7 @@ export const RegisterFormSix:React.FC = () => {
                                             minLength: 8,
                                             type: active ? 'text' : 'password'
                                         }}/>
-                    <div className='reg-step-six-icon' onClick={toggleView}>
+                    <div className='register-six-icon' onClick={toggleView}>
                         {active ? <VisibilityOffOutlinedIcon sx={{
                             fontSize: '24px'
                         }}/> :
