@@ -9,12 +9,20 @@ import {AppDispatch, RootState} from "../../../../redux/Store";
 import {cleanRegisterState, decrementStep} from "../../../../redux/Slices/RegisterSlice";
 import {RegisterNextButton} from "../RegisterNextButton/RegisterNextButton";
 
-export const RegisterModal: React.FC = () => {
+interface RegisterModalProps {
+    toggleModal: ()=>void;
+}
+
+export const RegisterModal: React.FC<RegisterModalProps> = ({toggleModal}) => {
 
     const state = useSelector((state: RootState) => state.register);
     const dispatch: AppDispatch = useDispatch();
 
     const stepButtonClicked = () => {
+        if(state.step === 1){
+            toggleModal();
+            return;
+        }
         dispatch(decrementStep());
     }
 
