@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Modal} from "../../../../components/Modal/Modal"
 import './RegisterModal.css';
@@ -6,7 +6,7 @@ import {RegistrationStepCounter} from "../RegisterStepCounter/RegistrationStepCo
 import { determineModalContent} from "../../utils/RegisterModalUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../../redux/Store";
-import {decrementStep} from "../../../../redux/Slices/RegisterSlice";
+import {cleanRegisterState, decrementStep} from "../../../../redux/Slices/RegisterSlice";
 import {RegisterNextButton} from "../RegisterNextButton/RegisterNextButton";
 
 export const RegisterModal: React.FC = () => {
@@ -17,6 +17,10 @@ export const RegisterModal: React.FC = () => {
     const stepButtonClicked = () => {
         dispatch(decrementStep());
     }
+
+    useEffect(()=>{
+        dispatch(cleanRegisterState());
+    },[]);
     return (
         <Modal topContent={<RegistrationStepCounter step={state.step} changeStep={stepButtonClicked}/>}
                content={determineModalContent(state.step)}
