@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import RegisterModal from "../features/register";
+import RightSideBar from "../features/landing/components/RightSideBar/RightSideBar";
 
 import './Landing.css';
 import '../assets/css/global.css'
@@ -22,7 +23,7 @@ export const Landing:React.FC = () => {
 
                 </div>
                 <div className="landing-top-right">
-                    <button onClick={toggleRegister}>Register Here</button>
+                    <RightSideBar toggleLogin={()=>{}} toggleRegister={toggleRegister}/>
                 </div>
                 <div className="landing-bottom">
                     Content
