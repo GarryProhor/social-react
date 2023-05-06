@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 
 import RegisterModal from "../features/register";
-import RightSideBar from "../features/landing/components/RightSideBar/RightSideBar";
+import {RightSideBar, LandingFooter} from '../features/landing'
 
 import './Landing.css';
 import '../assets/css/global.css'
+
+import whiteLogo from '../assets/img/logo-white.png';
 
 
 
@@ -20,13 +22,13 @@ export const Landing:React.FC = () => {
             {register ? <RegisterModal toggleModal={toggleRegister}/> : <></>}
             <div className="landing-layout">
                 <div className="landing-top-left bg-blue">
-
+                    <img src={whiteLogo} alt="white-logo" className="landing-top-left-logo"/>
                 </div>
                 <div className="landing-top-right">
                     <RightSideBar toggleLogin={()=>{}} toggleRegister={toggleRegister}/>
                 </div>
                 <div className="landing-bottom">
-                    Content
+                    <LandingFooter />
                 </div>
             </div>
 

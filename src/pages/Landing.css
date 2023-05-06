@@ -15,6 +15,14 @@
 .landing-top-left{
     grid-area: one;
     height: 33vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../assets/img/wharshappening.png");
+}
+.landing-top-left-logo{
+    max-width: auto;
+    height: 60%;
 }
 .landing-top-right{
     width: 100%;
@@ -42,6 +50,10 @@
         grid-area: one;
         height: 100%;
     }
+    .landing-top-left-logo{
+        max-width: 35%;
+        height: auto;
+    }
     .landing-top-right{
         grid-area: two;
         height: 100%;
@@ -63,5 +75,9 @@
         grid-area: two;
         height: 100%;
         justify-content: flex-start;
+    }
+    .landing-top-left-logo{
+        max-width: 35%;
+        height: auto;
     }
 }
