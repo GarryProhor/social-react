@@ -1,6 +1,6 @@
 import React from 'react';
 
-import apple from '../../../../assets/img/google.png';
+import apple from '../../../../assets/img/apple.png';
 import '../../../../assets/css/global.css';
 import './Buttons.css';
 
