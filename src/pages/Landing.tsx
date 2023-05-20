@@ -7,25 +7,32 @@ import './Landing.css';
 import '../assets/css/global.css'
 
 import whiteLogo from '../assets/img/logo-white.png';
+import LoginModal from "../features/login";
 
 
 
 export const Landing:React.FC = () => {
     const [register, setRegister] = useState<boolean>(false);
+    const [login, setLogin] = useState<boolean>(false);
 
     const toggleRegister = () => {
         setRegister(!register);
     }
 
+    const toggleLogin = () => {
+        setLogin(!login);
+    }
+
     return (
         <div className='home-container bg-color'>
             {register ? <RegisterModal toggleModal={toggleRegister}/> : <></>}
+            {login ? <LoginModal toggleModal={toggleLogin}/> : <></>}
             <div className="landing-layout">
                 <div className="landing-top-left bg-blue">
                     <img src={whiteLogo} alt="white-logo" className="landing-top-left-logo"/>
                 </div>
                 <div className="landing-top-right">
-                    <RightSideBar toggleLogin={()=>{}} toggleRegister={toggleRegister}/>
+                    <RightSideBar toggleLogin={toggleLogin} toggleRegister={toggleRegister}/>
                 </div>
                 <div className="landing-bottom">
                     <LandingFooter />
