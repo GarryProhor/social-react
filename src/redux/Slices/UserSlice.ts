@@ -4,7 +4,6 @@ import axios from "axios";
 
 interface UserSliceState {
     loggedIn: User | undefined;
-    userName:string;
     fromRegister: boolean;
     error: boolean;
 }
@@ -13,15 +12,9 @@ interface LoginBody {
     userName: string;
     password: string;
 }
-interface VerifyUserBody {
-    email: string;
-    phone: string;
-    userName: string;
-}
 
 const initialState:UserSliceState = {
     loggedIn: undefined,
-    userName: '',
     fromRegister: false,
     error: false,
 };
@@ -31,18 +24,6 @@ export const loginUser = createAsyncThunk(
     async (body:LoginBody, thunkAPI) => {
         try {
             const req = await axios.post('http://localhost:8080/auth/login', body);
-            return req.data;
-        }catch (e) {
-            thunkAPI.rejectWithValue(e);
-        }
-    }
-)
-
-export const verifyUsername = createAsyncThunk(
-    'user/username',
-    async (body:VerifyUserBody, thunkAPI) => {
-        try {
-            const req = await axios.post('http://localhost:8080/auth/find', body);
             return req.data;
         }catch (e) {
             thunkAPI.rejectWithValue(e);
@@ -80,28 +61,6 @@ export const UserSlice = createSlice({
                     bannerPicture: action.payload.user.bannerPicture,
                 }
             }
-            return state;
-        });
-
-        builder.addCase(verifyUsername.fulfilled, (state, action)=>{
-            state = {
-                ...state,
-                userName: action.payload
-            };
-            return state;
-        });
-        builder.addCase(verifyUsername.pending, (state, action)=>{
-            state = {
-                ...state,
-                error: true
-            };
-            return state;
-        });
-        builder.addCase(verifyUsername.rejected, (state, action)=>{
-            state = {
-                ...state,
-                error: false
-            };
             return state;
         });
     }

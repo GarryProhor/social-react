@@ -19,7 +19,7 @@
     border-radius: 20px;
 }
 .modal-top{
-    min-height: 40px;
+    min-height: 80px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
