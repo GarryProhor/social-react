@@ -48,6 +48,8 @@ export const LoginFormOne:React.FC = () => {
                 Sign in to Social
             </h1>
             <ModalButton
+                active={true}
+                height={40}
                 backgroundColor={'white'}
                 hoverBackground={{
                     r:179,
@@ -70,6 +72,8 @@ export const LoginFormOne:React.FC = () => {
                 Sign in with Google
             </ModalButton>
             <ModalButton
+                active={true}
+                height={40}
                 backgroundColor={'white'}
                 hoverBackground={{
                     r:87,
@@ -104,6 +108,8 @@ export const LoginFormOne:React.FC = () => {
             />
             {state.error ? <p className="login-form-one-error color-red">Unable to find user</p> : <></>}
             <ModalButton
+                active={true}
+                height={40}
                 backgroundColor={'black'}
                 hoverBackground={{
                     r:0,
@@ -119,6 +125,8 @@ export const LoginFormOne:React.FC = () => {
                 Next
             </ModalButton>
             <ModalButton
+                active={true}
+                height={40}
                 backgroundColor={'white'}
                 hoverBackground={{
                     r:83,
