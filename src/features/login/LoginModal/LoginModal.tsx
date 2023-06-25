@@ -3,7 +3,7 @@ import {Modal} from "../../../components/Modal/Modal";
 import './LoginModal.css';
 import {LoginModalTop} from "../LoginModalTop/LoginModalTop";
 import {LoginFormOne} from "../LofinForms/LoginFormOne";
-
+import {LoginButton} from "../LoginButton/LoginButton";
 import {RootState} from "../../../redux/Store";
 import {useSelector} from "react-redux";
 import {LoginFormTwo} from "../LofinForms/LoginFormTwo";
@@ -26,7 +26,7 @@ export const LoginModal:React.FC<LoginModalProps> = ({toggleModal}) => {
         <Modal
             topContent={<LoginModalTop closeModal={toggleModal} />}
             content={state.userName ? <LoginFormTwo setPassword={handlePassword}/> : <LoginFormOne/>}
-            bottomContent={<div>Login form 2 bottom</div>}
+            bottomContent={state.userName ? <LoginButton userName={state.userName} password={password}/> : <></>}
         />
     );
 };
