@@ -37,7 +37,7 @@
     margin: 40px 0 0;
 }
 
-.login-form-one-error{
+.login-form-error{
     font-size: 13px;
     font-weight: 200;
     margin: 0 5px 0 10px;
@@ -65,7 +65,7 @@
 }
 .login-from-two-password-icon{
     position: absolute;
-    bottom: 28px;
+    bottom: 32px;
     right: 15px;
     cursor: pointer;
 }
