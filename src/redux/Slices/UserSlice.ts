@@ -33,7 +33,7 @@ export const loginUser = createAsyncThunk(
             const req = await axios.post('http://localhost:8080/auth/login', body);
             return req.data;
         }catch (e) {
-            thunkAPI.rejectWithValue(e);
+            return thunkAPI.rejectWithValue(e);
         }
     }
 )
@@ -59,6 +59,13 @@ export const UserSlice = createSlice({
                 ...state,
                 fromRegister: action.payload,
             }
+            return state;
+        },
+        resetUsername(state){
+            state = {
+                ...state,
+                userName: ''
+            };
             return state;
         }
     },
@@ -90,12 +97,26 @@ export const UserSlice = createSlice({
             };
             return state;
         });
+        builder.addCase(loginUser.pending, (state, action) => {
+            state={
+                ...state,
+                error: true
+            }
+            return state;
+        });
         builder.addCase(verifyUsername.pending, (state, action)=>{
             state = {
                 ...state,
                 error: true
             };
             return state;
+        });
+        builder.addCase(loginUser.rejected, (state, action) => {
+           state={
+               ...state,
+               error: false
+           }
+           return state;
         });
         builder.addCase(verifyUsername.rejected, (state, action)=>{
             state = {
@@ -107,6 +128,6 @@ export const UserSlice = createSlice({
     }
 });
 
-export const {setFromRegister} = UserSlice.actions;
+export const {setFromRegister, resetUsername} = UserSlice.actions;
 
 export default UserSlice.reducer;
