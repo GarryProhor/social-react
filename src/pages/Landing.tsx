@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../redux/Store";
+import {resetUsername} from "../redux/Slices/UserSlice";
 import RegisterModal from "../features/register";
 import {RightSideBar, LandingFooter} from '../features/landing'
 
@@ -12,6 +14,9 @@ import LoginModal from "../features/login";
 
 
 export const Landing:React.FC = () => {
+
+    const dispatch:AppDispatch = useDispatch();
+
     const [register, setRegister] = useState<boolean>(false);
     const [login, setLogin] = useState<boolean>(false);
 
@@ -21,6 +26,7 @@ export const Landing:React.FC = () => {
 
     const toggleLogin = () => {
         setLogin(!login);
+        dispatch(resetUsername());
     }
 
     return (
