@@ -12,7 +12,10 @@ import google from '../../../assets/img/google.png';
 import apple from '../../../assets/img/apple.png';
 import {validatedEmail, validatePhone} from "../../../services/Validators";
 
-export const LoginFormOne:React.FC = () => {
+interface LoginFormOneProps {
+    noAccount: ()=>void;
+}
+export const LoginFormOne:React.FC<LoginFormOneProps> = ({noAccount}) => {
 
     const state = useSelector((state:RootState) => state.user);
 
@@ -147,7 +150,12 @@ export const LoginFormOne:React.FC = () => {
             >
                 Forgot password?
             </ModalButton>
-            <p className="login-form-one-text color-gray">Don't have an account? <span className="link color-blue">Sign Up</span></p>
+            <p className="login-form-one-text color-gray">
+                Don't have an account?
+                <span className="link color-blue" onClick={noAccount}>
+                    Sign Up
+                </span>
+            </p>
         </div>
     );
 };
