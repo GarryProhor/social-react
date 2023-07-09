@@ -5,6 +5,7 @@ import axios from "axios";
 interface UserSliceState {
     loggedIn: User | undefined;
     userName:string;
+    token: string;
     fromRegister: boolean;
     error: boolean;
 }
@@ -22,6 +23,7 @@ interface VerifyUserBody {
 const initialState:UserSliceState = {
     loggedIn: undefined,
     userName: '',
+    token: '',
     fromRegister: false,
     error: false,
 };
@@ -85,7 +87,8 @@ export const UserSlice = createSlice({
                     nickName: action.payload.user.nickName,
                     profilePicture: action.payload.user.profilePicture,
                     bannerPicture: action.payload.user.bannerPicture,
-                }
+                },
+                token: action.payload.token
             }
             return state;
         });
