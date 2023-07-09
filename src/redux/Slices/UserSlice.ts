@@ -69,6 +69,13 @@ export const UserSlice = createSlice({
                 userName: ''
             };
             return state;
+        },
+        setToken(state, action: PayloadAction<string>){
+            state = {
+                ...state,
+                token: action.payload
+            };
+            return state;
         }
     },
     extraReducers: (builder) => {
@@ -131,6 +138,6 @@ export const UserSlice = createSlice({
     }
 });
 
-export const {setFromRegister, resetUsername} = UserSlice.actions;
+export const {setFromRegister, resetUsername, setToken} = UserSlice.actions;
 
 export default UserSlice.reducer;
