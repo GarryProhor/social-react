@@ -4,6 +4,7 @@ import {AppDispatch} from "../redux/Store";
 import {resetUsername} from "../redux/Slices/UserSlice";
 import RegisterModal from "../features/register";
 import {RightSideBar, LandingFooter} from '../features/landing'
+import ForgotPasswordModal from "../features/forgotpassword";
 
 import './Landing.css';
 import '../assets/css/global.css'
@@ -19,7 +20,7 @@ export const Landing:React.FC = () => {
 
     const [register, setRegister] = useState<boolean>(false);
     const [login, setLogin] = useState<boolean>(false);
-
+    const [forgotPassword, setForgotPassword] = useState<boolean>(true);
     const toggleRegister = () => {
         setRegister(!register);
     }
@@ -29,10 +30,15 @@ export const Landing:React.FC = () => {
         dispatch(resetUsername());
     }
 
+    const toggleForgotPassword = () =>{
+        setForgotPassword(!forgotPassword);
+    }
+
     return (
         <div className='home-container bg-color'>
             {register ? <RegisterModal toggleModal={toggleRegister}/> : <></>}
             {login ? <LoginModal toggleModal={toggleLogin} toggleRegister={toggleRegister}/> : <></>}
+            {forgotPassword ? <ForgotPasswordModal toggleModal={toggleForgotPassword}/> : <></>}
             <div className="landing-layout">
                 <div className="landing-top-left bg-blue">
                     <img src={whiteLogo} alt="white-logo" className="landing-top-left-logo"/>
