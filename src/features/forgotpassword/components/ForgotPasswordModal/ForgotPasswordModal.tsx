@@ -7,7 +7,7 @@ import {ForgotButtonOne} from "../ForgotButtonOne/ForgotButtonOne";
 import axios from "axios";
 import {ForgotFormTwo} from "../ForgotForms/ForgotFormTwo";
 import {ForgotButtonTwo} from "../ForgotButtonTwo/ForgotButtonTwo";
-import {determineForgotFormContent} from "../../utils/ForgotPasswordUtils";
+import {determineForgotButton, determineForgotFormContent} from "../../utils/ForgotPasswordUtils";
 
 interface UserInfo {
     email: string;
@@ -96,7 +96,13 @@ export const ForgotPasswordModal:React.FC<{toggleModal:()=>void}> = ({toggleModa
                 userInfo.email,
                 userInfo.phone
             )}
-            bottomContent={step === 1 ? <ForgotButtonOne value={credential} handleClick={searchUser}/> : <ForgotButtonTwo onCancel={toggleModal} sendCode={sendReset}/>}
+            bottomContent={determineForgotButton(
+                step,
+                credential,
+                searchUser,
+                toggleModal,
+                sendReset
+            )}
         />
     );
 };

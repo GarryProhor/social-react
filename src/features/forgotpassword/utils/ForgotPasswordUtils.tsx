@@ -1,6 +1,5 @@
 import {ForgotFormOne} from "../components/ForgotForms/ForgotFormOne";
 import {ForgotFormTwo} from "../components/ForgotForms/ForgotFormTwo";
-import exp from "constants";
 import {ForgotButtonOne} from "../components/ForgotButtonOne/ForgotButtonOne";
 import {ForgotButtonTwo} from "../components/ForgotButtonTwo/ForgotButtonTwo";
 
