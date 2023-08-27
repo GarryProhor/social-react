@@ -27,8 +27,14 @@ export const ForgotPasswordModal:React.FC<{toggleModal:()=>void}> = ({toggleModa
         userName: ''
     })
     const [resetCode, setResetCode] = useState<number>(0);
+    const [userInputCode, setUserInputCode] = useState<number>(0);
+
     const changeCredential = (credential:string) => {
         setCredential(credential);
+    }
+
+    const changeUserInputCode = (value:number) =>{
+        setUserInputCode(value);
     }
 
     const searchUser = async () =>{
@@ -94,7 +100,9 @@ export const ForgotPasswordModal:React.FC<{toggleModal:()=>void}> = ({toggleModa
                 setCredential,
                 error,
                 userInfo.email,
-                userInfo.phone
+                userInfo.phone,
+                !error,
+                changeUserInputCode
             )}
             bottomContent={determineForgotButton(
                 step,
