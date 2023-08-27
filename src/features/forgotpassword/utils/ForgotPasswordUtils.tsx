@@ -2,16 +2,17 @@ import {ForgotFormOne} from "../components/ForgotForms/ForgotFormOne";
 import {ForgotFormTwo} from "../components/ForgotForms/ForgotFormTwo";
 import {ForgotButtonOne} from "../components/ForgotButtonOne/ForgotButtonOne";
 import {ForgotButtonTwo} from "../components/ForgotButtonTwo/ForgotButtonTwo";
+import {ForgotFormThree} from "../components/ForgotForms/ForgotFormThree";
 
 export const determineForgotFormContent = (step: number, setCredential: (value: string) => void, error: boolean,
-                                           email: string, phone: string): JSX.Element => {
+                                           email: string, phone: string, valid:boolean, updateCode:(value:number)=>void ): JSX.Element => {
     switch (step) {
         case 1:
             return <ForgotFormOne setCredential={setCredential} error={error}/>
         case 2:
             return <ForgotFormTwo email={email} phone={phone}/>
         case 3:
-            return <></>
+            return <ForgotFormThree valid={valid} updateCode={updateCode}/>
     }
     return <></>
 }
